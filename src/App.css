@@ -1,0 +1,30 @@
+/* Purani saari khichri khatam karne ke liye */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Side scrolling khatam karne ke liye */
+  background-color: #f4f7f6;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Vite ka center align khatam karne ke liye */
+}
+
+/* Hover effects for all buttons */
+button {
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
