@@ -24,5 +24,18 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "vite": "^7.3.1"
-  }
+  },
+  "description": "This is my first professional React application built with Vite. The project is a Tutor Platform designed to connect students with qualified educators.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehreenbutt-hub/MyFirstProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehreenbutt-hub/MyFirstProject/issues"
+  },
+  "homepage": "https://github.com/mehreenbutt-hub/MyFirstProject#readme"
 }

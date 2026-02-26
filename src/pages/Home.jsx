@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TutorCard from '../components/TutorCard';
 
-const Home = () => {
+const Home = ({ search = "" }) => { // Default empty string agar search na mile
   const [selectedSubject, setSelectedSubject] = useState('All');
 
   const tutors = [
@@ -13,13 +13,17 @@ const Home = () => {
     { id: 6, name: "Ayesha Omer", subject: "English", price: "18", rating: "4.9", image: "https://randomuser.me/api/portraits/women/17.jpg" }
   ];
 
-  const filteredTutors = selectedSubject === 'All' 
-    ? tutors 
-    : tutors.filter(t => t.subject === selectedSubject);
+  // Search aur Subject dono ko ek sath filter karne ki logic
+  const filteredTutors = tutors.filter(tutor => {
+    const matchesSubject = selectedSubject === 'All' || tutor.subject === selectedSubject;
+    const matchesSearch = tutor.name.toLowerCase().includes(search.toLowerCase()) || 
+                          tutor.subject.toLowerCase().includes(search.toLowerCase());
+    return matchesSubject && matchesSearch;
+  });
 
   return (
     <div style={{ backgroundColor: '#f4f7f6', minHeight: '100vh', paddingBottom: '50px' }}>
-      {/* Hero Section */}
+      {/* Hero Section (Wahi purana gradient design) */}
       <div style={{ 
         textAlign: 'center', padding: '80px 20px', 
         background: 'linear-gradient(135deg, #3498db 0%, #2c3e50 100%)', 
@@ -51,20 +55,23 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Tutor Cards Grid */}
+      {/* Grid */}
       <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-        gap: '30px', 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 20px' 
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+        gap: '30px', maxWidth: '1200px', margin: '0 auto', padding: '0 20px' 
       }}>
-        {filteredTutors.map(tutor => (
-          <TutorCard key={tutor.id} {...tutor} />
-        ))}
+        {filteredTutors.length > 0 ? (
+          filteredTutors.map(tutor => (
+            <TutorCard key={tutor.id} {...tutor} />
+          ))
+        ) : (
+          <h3 style={{ textAlign: 'center', gridColumn: '1/-1', color: '#7f8c8d' }}>
+            No tutors found for "{search}"
+          </h3>
+        )}
       </div>
     </div>
   );
 };
+
 export default Home;
