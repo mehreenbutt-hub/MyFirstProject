@@ -42,6 +42,7 @@ function App() {
               <Route path="/chat/:receiverId" element={<Chat />} />
 
               {/* Dashboards */}
+              <Route path="/profile" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route path="/teacher-dashboard" element={<Dashboard />} />
