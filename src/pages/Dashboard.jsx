@@ -18,6 +18,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!user) navigate("/login");
+    // ✅ Admin yahan nahi aayega — admin-dashboard pe jayega
+    if (user?.role === 'admin') navigate("/admin-dashboard");
   }, [user, navigate]);
 
   useEffect(() => {

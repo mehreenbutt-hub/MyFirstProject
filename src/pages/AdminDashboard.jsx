@@ -53,6 +53,30 @@ const AdminDashboard = () => {
         });
     };
 
+    // ✅ Booking delete function add kiya
+    const deleteBooking = async (id) => {
+        Swal.fire({
+            title: 'Booking Delete Karen?',
+            text: "Yeh booking permanently delete ho jaegi!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e74c3c',
+            cancelButtonColor: '#95a5a6',
+            confirmButtonText: 'Haan, Delete!',
+            cancelButtonText: 'Cancel'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.delete(`${API_URL}/api/auth/bookings/delete/${id}`);
+                    setBookings(bookings.filter(b => b._id !== id));
+                    Swal.fire('Deleted!', 'Booking delete ho gayi.', 'success');
+                } catch (err) {
+                    Swal.fire('Error!', 'Booking delete nahi hui.', 'error');
+                }
+            }
+        });
+    };
+
     const updateBookingStatus = async (id, status) => {
         try {
             await axios.put(`${API_URL}/api/auth/bookings/update/${id}`, { status });
@@ -83,6 +107,8 @@ const AdminDashboard = () => {
                 <div style={statCard}><h2 style={{ margin: 0, color: '#9b59b6' }}>{users.filter(u => u.role === 'student').length}</h2><p style={{ margin: 0, color: '#95a5a6', fontSize: '14px' }}>Students</p></div>
                 <div style={statCard}><h2 style={{ margin: 0, color: '#e67e22' }}>{bookings.length}</h2><p style={{ margin: 0, color: '#95a5a6', fontSize: '14px' }}>Total Bookings</p></div>
             </div>
+
+            {/* Users Table */}
             <div style={tableCard}>
                 <h3 style={{ borderLeft: '5px solid #3498db', paddingLeft: '10px', marginBottom: '20px' }}>Registered Users ({users.length})</h3>
                 <div style={{ overflowX: 'auto' }}>
@@ -107,6 +133,8 @@ const AdminDashboard = () => {
                     </table>
                 </div>
             </div>
+
+            {/* Bookings Table */}
             <div style={{ ...tableCard, marginTop: '30px' }}>
                 <h3 style={{ borderLeft: '5px solid #2ecc71', paddingLeft: '10px', marginBottom: '20px' }}>All Booking Requests ({bookings.length})</h3>
                 <div style={{ overflowX: 'auto' }}>
@@ -132,8 +160,12 @@ const AdminDashboard = () => {
                                             </span>
                                         </td>
                                         <td style={td}>
+                                            {/* ✅ Approve Button */}
                                             <button onClick={() => updateBookingStatus(book._id, 'approved')} style={{ marginRight: '5px', backgroundColor: '#2ecc71', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Approve</button>
-                                            <button onClick={() => updateBookingStatus(book._id, 'rejected')} style={{ backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Reject</button>
+                                            {/* ✅ Reject Button */}
+                                            <button onClick={() => updateBookingStatus(book._id, 'rejected')} style={{ marginRight: '5px', backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Reject</button>
+                                            {/* ✅ Delete Button — naya add kiya */}
+                                            <button onClick={() => deleteBooking(book._id)} style={{ backgroundColor: '#7f8c8d', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Delete</button>
                                         </td>
                                     </tr>
                                 ))
