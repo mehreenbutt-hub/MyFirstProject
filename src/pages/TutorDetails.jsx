@@ -65,7 +65,8 @@ const TutorDetails = () => {
           <span style={{ background: '#e8f4fd', color: '#3498db', padding: '5px 10px', borderRadius: '10px' }}>{tutor.subject}</span>
           <h1 style={{ fontSize: '2.5rem', margin: '10px 0' }}>{tutor.name}</h1>
           <p style={{ color: '#7f8c8d' }}>Experience: {tutor.experience} years</p>
-          <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Rs. {tutor.hourlyRate} / hr</p>
+          {/* ✅ Rs. ki jagah $ */}
+          <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>${tutor.hourlyRate} / hr</p>
           <button onClick={() => setShowModal(true)} style={{ marginTop: '20px', padding: '15px 30px', background: '#2c3e50', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold' }}>
             Book a Free Trial
           </button>
