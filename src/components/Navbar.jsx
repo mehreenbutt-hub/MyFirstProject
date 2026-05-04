@@ -49,6 +49,8 @@ const Navbar = ({ search, setSearch }) => {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '25px' }}>
         <Link to="/" style={linkStyle}>Home</Link>
+        {/* ✅ Blog link add kiya */}
+        <Link to="/blog" style={linkStyle}>Blog</Link>
 
         {user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>

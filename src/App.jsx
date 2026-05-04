@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard'; 
 import AdminDashboard from './pages/AdminDashboard';
 import NotFound from './pages/NotFound';
+import Blog from './pages/Blog';
 import './App.css';
 
 // ✅ Role-based profile component
@@ -41,8 +42,8 @@ function App() {
               <Route path="/tutor/:id" element={<TutorDetails />} />
               <Route path="/teacher-profile/:id" element={<TeacherProfile />} />
               <Route path="/chat/:receiverId" element={<Chat />} />
-
-              {/* ✅ /profile ab role check karega */}
+              {/* ✅ Blog route add kiya */}
+              <Route path="/blog" element={<Blog />} />
               <Route path="/profile" element={<ProtectedProfile />} />
               <Route path="/dashboard" element={<ProtectedProfile />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
